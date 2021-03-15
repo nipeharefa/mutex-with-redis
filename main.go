@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"github.com/bsm/redislock"
@@ -49,7 +50,7 @@ func sendUpdateCart(locker *redislock.Client) {
 
 func main() {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "10.126.0.88:6379",
+		Addr:     os.Getenv("REDIS_ADDR"),
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
